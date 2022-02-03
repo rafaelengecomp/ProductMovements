@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Movements.Data.Mappings;
+using Movements.Domain.Entities;
 using System;
 using System.Linq;
 using Template.Data.Mappings;
@@ -17,6 +19,12 @@ namespace Template.Data.Context
         public DbSet<Module> Modules { get; set; }
         public DbSet<ModuleProfile> ModuleProfiles { get; set; }
 
+        public DbSet<Product> Product { get; set; }
+
+        public DbSet<Cosif> Cosif { get; set; }
+
+        public DbSet<Moviments> Moviments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,6 +33,10 @@ namespace Template.Data.Context
             modelBuilder.ApplyConfiguration(new ProfileMap());
             modelBuilder.ApplyConfiguration(new ModuleMap());
             modelBuilder.ApplyConfiguration(new ModuleProfileMap());
+
+            modelBuilder.ApplyConfiguration(new ProductMap());
+            modelBuilder.ApplyConfiguration(new CosifMap());
+            modelBuilder.ApplyConfiguration(new MovimentsMap());
 
             ApplyGlobalStandards(modelBuilder);
             SeedData(modelBuilder);
@@ -54,7 +66,7 @@ namespace Template.Data.Context
                     IsAuthorised = true, Password = "8D66A53A381493BEC08DA23CEF5A43767F20A42C", CreatedUser = 1,
                     CreatedDate = DateTime.Now, ProfileId = 2}
             };
-
+            
             ModuleProfile[] _moduleProfiles = new[]
             {
                 new ModuleProfile{ ProfileId = 1, ModuleId = 1 },
@@ -64,11 +76,26 @@ namespace Template.Data.Context
                 new ModuleProfile{ ProfileId = 2, ModuleId = 3 }
             };
 
+            Product[] _products = new[]
+            {
+                    new Product { CodProduct = "0001", Description = "Notebook", Status = "A"},
+                    new Product { CodProduct = "0002", Description = "Book", Status = "I"},
+                    new Product { CodProduct = "0003", Description = "Head Phone", Status = "A"}
+             };
+
+            Cosif[] _cosifs = new[]
+{
+                    new Cosif { CodProduct = "0001", CodCosif = "00000000001", CodClassification = "000001", Status = "A"},
+                    new Cosif { CodProduct = "0002", CodCosif = "00000000002", CodClassification = "000002", Status = "I"},
+                    new Cosif { CodProduct = "0003", CodCosif = "00000000003", CodClassification = "000003", Status = "A"}
+             };
+
             modelBuilder.Entity<Module>().HasData(_modules);
             modelBuilder.Entity<Profile>().HasData(_profiles);
             modelBuilder.Entity<User>().HasData(_users);
+            modelBuilder.Entity<Product>().HasData(_products);
+            modelBuilder.Entity<Cosif>().HasData(_cosifs);
             modelBuilder.Entity<ModuleProfile>().HasData(_moduleProfiles);
-
         }
 
         private ModelBuilder ApplyGlobalStandards(ModelBuilder builder)

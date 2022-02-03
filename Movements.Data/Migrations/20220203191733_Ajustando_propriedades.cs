@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Movements.Data.Migrations
 {
-    public partial class CreateDataBase : Migration
+    public partial class Ajustando_propriedades : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,6 +29,19 @@ namespace Movements.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PRODUCT",
+                columns: table => new
+                {
+                    CodProduct = table.Column<string>(type: "nchar(4)", fixedLength: true, maxLength: 4, nullable: false),
+                    Description = table.Column<string>(type: "nchar(30)", fixedLength: true, maxLength: 30, nullable: true),
+                    Status = table.Column<string>(type: "nchar(1)", fixedLength: true, maxLength: 1, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PRODUCT", x => x.CodProduct);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Profiles",
                 columns: table => new
                 {
@@ -45,6 +58,26 @@ namespace Movements.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profiles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PRODUCT_COSIF",
+                columns: table => new
+                {
+                    CodProduct = table.Column<string>(type: "nchar(4)", fixedLength: true, maxLength: 4, nullable: false),
+                    CodCosif = table.Column<string>(type: "nchar(11)", fixedLength: true, maxLength: 11, nullable: false),
+                    CodClassification = table.Column<string>(type: "nchar(6)", fixedLength: true, maxLength: 6, nullable: true),
+                    Status = table.Column<string>(type: "nchar(1)", fixedLength: true, maxLength: 1, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PRODUCT_COSIF", x => new { x.CodProduct, x.CodCosif });
+                    table.ForeignKey(
+                        name: "FK_PRODUCT_COSIF_PRODUCT_CodProduct",
+                        column: x => x.CodProduct,
+                        principalTable: "PRODUCT",
+                        principalColumn: "CodProduct",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,6 +133,33 @@ namespace Movements.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "MANUAL_MOVIMENTS",
+                columns: table => new
+                {
+                    Month = table.Column<int>(type: "int", fixedLength: true, maxLength: 2, nullable: false),
+                    Year = table.Column<int>(type: "int", fixedLength: true, maxLength: 4, nullable: false),
+                    EntryNumber = table.Column<int>(type: "int", fixedLength: true, maxLength: 18, nullable: false),
+                    CodProduct = table.Column<string>(type: "nchar(4)", fixedLength: true, maxLength: 4, nullable: false),
+                    CodCosif = table.Column<int>(type: "int", fixedLength: true, maxLength: 11, nullable: false),
+                    Description = table.Column<string>(type: "nchar(50)", fixedLength: true, maxLength: 50, nullable: false),
+                    MovimentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserCode = table.Column<string>(type: "nchar(15)", fixedLength: true, maxLength: 15, nullable: false),
+                    Value = table.Column<int>(type: "int", fixedLength: true, maxLength: 18, nullable: false),
+                    CosifCodCosif = table.Column<string>(type: "nchar(11)", nullable: true),
+                    CosifCodProduct = table.Column<string>(type: "nchar(4)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MANUAL_MOVIMENTS", x => new { x.EntryNumber, x.Month, x.Year, x.CodProduct, x.CodCosif });
+                    table.ForeignKey(
+                        name: "FK_MANUAL_MOVIMENTS_PRODUCT_COSIF_CosifCodProduct_CosifCodCosif",
+                        columns: x => new { x.CosifCodProduct, x.CosifCodCosif },
+                        principalTable: "PRODUCT_COSIF",
+                        principalColumns: new[] { "CodProduct", "CodCosif" },
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Modules",
                 columns: new[] { "Id", "CreatedUser", "Icon", "IsActive", "Name", "Sequence", "URL", "UpdatedData", "UpdatedUser" },
@@ -136,9 +196,14 @@ namespace Movements.Data.Migrations
                 columns: new[] { "Id", "Code", "CreatedDate", "CreatedUser", "Email", "IsActive", "IsAuthorised", "Name", "Password", "ProfileId", "UpdatedData", "UpdatedUser" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2022, 2, 2, 18, 45, 56, 589, DateTimeKind.Local).AddTicks(5334), 1, "admin@template.com", true, true, "Admin", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 1, null, 0 },
-                    { 2, null, new DateTime(2022, 2, 2, 18, 45, 56, 590, DateTimeKind.Local).AddTicks(2924), 1, "user@template.com", true, true, "User", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 2, null, 0 }
+                    { 1, null, new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(666), 1, "admin@template.com", true, true, "Admin", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 1, null, 0 },
+                    { 2, null, new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(8656), 1, "user@template.com", true, true, "User", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 2, null, 0 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MANUAL_MOVIMENTS_CosifCodProduct_CosifCodCosif",
+                table: "MANUAL_MOVIMENTS",
+                columns: new[] { "CosifCodProduct", "CosifCodCosif" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ModuleProfiles_ProfileId",
@@ -154,16 +219,25 @@ namespace Movements.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "MANUAL_MOVIMENTS");
+
+            migrationBuilder.DropTable(
                 name: "ModuleProfiles");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
+                name: "PRODUCT_COSIF");
+
+            migrationBuilder.DropTable(
                 name: "Modules");
 
             migrationBuilder.DropTable(
                 name: "Profiles");
+
+            migrationBuilder.DropTable(
+                name: "PRODUCT");
         }
     }
 }

@@ -21,8 +21,8 @@ namespace Template.CrossCutting.Swagger
                         Description = $".Net 5 + Angular 11",
                         Contact = new OpenApiContact
                         {
-                            Name = "Nicolas Fontes",
-                            Email = "nicolas.rfontes@gmail.com"
+                            Name = "Rafael Andrade Moura",
+                            Email = "rafael.engecomp@gmail.com"
                         }
                     });
 

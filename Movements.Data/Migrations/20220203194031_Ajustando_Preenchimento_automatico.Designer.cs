@@ -10,8 +10,8 @@ using Template.Data.Context;
 namespace Movements.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20220202214556_CreateDataBase")]
-    partial class CreateDataBase
+    [Migration("20220203194031_Ajustando_Preenchimento_automatico")]
+    partial class Ajustando_Preenchimento_automatico
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,158 @@ namespace Movements.Data.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
+
+            modelBuilder.Entity("Movements.Domain.Entities.Cosif", b =>
+                {
+                    b.Property<string>("CodProduct")
+                        .HasMaxLength(4)
+                        .HasColumnType("nchar(4)")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("CodCosif")
+                        .HasMaxLength(11)
+                        .HasColumnType("nchar(11)")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("CodClassification")
+                        .HasMaxLength(6)
+                        .HasColumnType("nchar(6)")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(1)
+                        .HasColumnType("nchar(1)")
+                        .IsFixedLength(true);
+
+                    b.HasKey("CodProduct", "CodCosif");
+
+                    b.ToTable("PRODUCT_COSIF");
+
+                    b.HasData(
+                        new
+                        {
+                            CodProduct = "0001",
+                            CodCosif = "00000000001",
+                            CodClassification = "000001",
+                            Status = "A"
+                        },
+                        new
+                        {
+                            CodProduct = "0002",
+                            CodCosif = "00000000002",
+                            CodClassification = "000002",
+                            Status = "I"
+                        },
+                        new
+                        {
+                            CodProduct = "0003",
+                            CodCosif = "00000000003",
+                            CodClassification = "000003",
+                            Status = "A"
+                        });
+                });
+
+            modelBuilder.Entity("Movements.Domain.Entities.Moviments", b =>
+                {
+                    b.Property<int>("EntryNumber")
+                        .HasMaxLength(18)
+                        .HasColumnType("int")
+                        .IsFixedLength(true);
+
+                    b.Property<int>("Month")
+                        .HasMaxLength(2)
+                        .HasColumnType("int")
+                        .IsFixedLength(true);
+
+                    b.Property<int>("Year")
+                        .HasMaxLength(4)
+                        .HasColumnType("int")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("CodProduct")
+                        .HasMaxLength(4)
+                        .HasColumnType("nchar(4)")
+                        .IsFixedLength(true);
+
+                    b.Property<int>("CodCosif")
+                        .HasMaxLength(11)
+                        .HasColumnType("int")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("CosifCodCosif")
+                        .HasColumnType("nchar(11)");
+
+                    b.Property<string>("CosifCodProduct")
+                        .HasColumnType("nchar(4)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nchar(50)")
+                        .IsFixedLength(true);
+
+                    b.Property<DateTime>("MovimentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserCode")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nchar(15)")
+                        .IsFixedLength(true);
+
+                    b.Property<int>("Value")
+                        .HasMaxLength(18)
+                        .HasColumnType("int")
+                        .IsFixedLength(true);
+
+                    b.HasKey("EntryNumber", "Month", "Year", "CodProduct", "CodCosif");
+
+                    b.HasIndex("CosifCodProduct", "CosifCodCosif");
+
+                    b.ToTable("MANUAL_MOVIMENTS");
+                });
+
+            modelBuilder.Entity("Movements.Domain.Entities.Product", b =>
+                {
+                    b.Property<string>("CodProduct")
+                        .HasMaxLength(4)
+                        .HasColumnType("nchar(4)")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(30)
+                        .HasColumnType("nchar(30)")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(1)
+                        .HasColumnType("nchar(1)")
+                        .IsFixedLength(true);
+
+                    b.HasKey("CodProduct");
+
+                    b.ToTable("PRODUCT");
+
+                    b.HasData(
+                        new
+                        {
+                            CodProduct = "0001",
+                            Description = "Notebook",
+                            Status = "A"
+                        },
+                        new
+                        {
+                            CodProduct = "0002",
+                            Description = "Book",
+                            Status = "I"
+                        },
+                        new
+                        {
+                            CodProduct = "0003",
+                            Description = "Head Phone",
+                            Status = "A"
+                        });
+                });
 
             modelBuilder.Entity("Template.Domain.Entities.Module", b =>
                 {
@@ -255,7 +407,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 2, 2, 18, 45, 56, 589, DateTimeKind.Local).AddTicks(5334),
+                            CreatedDate = new DateTime(2022, 2, 3, 16, 40, 31, 19, DateTimeKind.Local).AddTicks(3181),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -268,7 +420,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 2, 2, 18, 45, 56, 590, DateTimeKind.Local).AddTicks(2924),
+                            CreatedDate = new DateTime(2022, 2, 3, 16, 40, 31, 20, DateTimeKind.Local).AddTicks(1392),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
@@ -278,6 +430,22 @@ namespace Movements.Data.Migrations
                             ProfileId = 2,
                             UpdatedUser = 0
                         });
+                });
+
+            modelBuilder.Entity("Movements.Domain.Entities.Cosif", b =>
+                {
+                    b.HasOne("Movements.Domain.Entities.Product", null)
+                        .WithMany("Cosif")
+                        .HasForeignKey("CodProduct")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Movements.Domain.Entities.Moviments", b =>
+                {
+                    b.HasOne("Movements.Domain.Entities.Cosif", null)
+                        .WithMany("Moviments")
+                        .HasForeignKey("CosifCodProduct", "CosifCodCosif");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.ModuleProfile", b =>
@@ -308,6 +476,16 @@ namespace Movements.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Movements.Domain.Entities.Cosif", b =>
+                {
+                    b.Navigation("Moviments");
+                });
+
+            modelBuilder.Entity("Movements.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("Cosif");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Module", b =>

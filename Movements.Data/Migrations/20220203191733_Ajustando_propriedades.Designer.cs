@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
 namespace Movements.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    partial class MySQLContextModelSnapshot : ModelSnapshot
+    [Migration("20220203191733_Ajustando_propriedades")]
+    partial class Ajustando_propriedades
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,29 +46,6 @@ namespace Movements.Data.Migrations
                     b.HasKey("CodProduct", "CodCosif");
 
                     b.ToTable("PRODUCT_COSIF");
-
-                    b.HasData(
-                        new
-                        {
-                            CodProduct = "0001",
-                            CodCosif = "00000000001",
-                            CodClassification = "000001",
-                            Status = "A"
-                        },
-                        new
-                        {
-                            CodProduct = "0002",
-                            CodCosif = "00000000002",
-                            CodClassification = "000002",
-                            Status = "I"
-                        },
-                        new
-                        {
-                            CodProduct = "0003",
-                            CodCosif = "00000000003",
-                            CodClassification = "000003",
-                            Status = "A"
-                        });
                 });
 
             modelBuilder.Entity("Movements.Domain.Entities.Moviments", b =>
@@ -149,26 +128,6 @@ namespace Movements.Data.Migrations
                     b.HasKey("CodProduct");
 
                     b.ToTable("PRODUCT");
-
-                    b.HasData(
-                        new
-                        {
-                            CodProduct = "0001",
-                            Description = "Notebook",
-                            Status = "A"
-                        },
-                        new
-                        {
-                            CodProduct = "0002",
-                            Description = "Book",
-                            Status = "I"
-                        },
-                        new
-                        {
-                            CodProduct = "0003",
-                            Description = "Head Phone",
-                            Status = "A"
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Module", b =>
@@ -405,7 +364,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 2, 3, 16, 40, 31, 19, DateTimeKind.Local).AddTicks(3181),
+                            CreatedDate = new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(666),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -418,7 +377,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 2, 3, 16, 40, 31, 20, DateTimeKind.Local).AddTicks(1392),
+                            CreatedDate = new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(8656),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
