@@ -23,7 +23,7 @@ namespace Template.Data.Context
 
         public DbSet<Cosif> Cosif { get; set; }
 
-        public DbSet<Moviments> Moviments { get; set; }
+        public DbSet<Movement> Moviments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,7 @@ namespace Template.Data.Context
 
             modelBuilder.ApplyConfiguration(new ProductMap());
             modelBuilder.ApplyConfiguration(new CosifMap());
-            modelBuilder.ApplyConfiguration(new MovimentsMap());
+            modelBuilder.ApplyConfiguration(new MovementsMap());
 
             ApplyGlobalStandards(modelBuilder);
             SeedData(modelBuilder);
@@ -84,17 +84,25 @@ namespace Template.Data.Context
              };
 
             Cosif[] _cosifs = new[]
-{
+            {
                     new Cosif { CodProduct = "0001", CodCosif = "00000000001", CodClassification = "000001", Status = "A"},
                     new Cosif { CodProduct = "0002", CodCosif = "00000000002", CodClassification = "000002", Status = "I"},
                     new Cosif { CodProduct = "0003", CodCosif = "00000000003", CodClassification = "000003", Status = "A"}
              };
+
+
+            Movement[] _movements = new[]
+            {
+                    new Movement { CodProduct = "0001", CodCosif = "00000000001", EntryNumber = 001, Month = 01, Year = 2020, Description = "Notebook", MovimentDate = DateTime.Now, UserCode = "TESTE", Value = 10000 }
+             };
+
 
             modelBuilder.Entity<Module>().HasData(_modules);
             modelBuilder.Entity<Profile>().HasData(_profiles);
             modelBuilder.Entity<User>().HasData(_users);
             modelBuilder.Entity<Product>().HasData(_products);
             modelBuilder.Entity<Cosif>().HasData(_cosifs);
+            modelBuilder.Entity<Movement>().HasData(_movements);
             modelBuilder.Entity<ModuleProfile>().HasData(_moduleProfiles);
         }
 

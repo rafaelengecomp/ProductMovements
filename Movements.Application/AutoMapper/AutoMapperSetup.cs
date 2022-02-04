@@ -1,4 +1,5 @@
-﻿using Template.Application.Services;
+﻿using Movements.Domain.Entities;
+using Template.Application.Services;
 using Template.Application.ViewModels.Modules;
 using Template.Application.ViewModels.Profiles;
 using Template.Application.ViewModels.Users;
@@ -26,6 +27,7 @@ namespace Template.Application.AutoMapper
             CreateMap<User, ContextUserViewModel>()
                 .ForMember(x => x.Profile, m => m.MapFrom(map => map.ProfileId));
             CreateMap<User, UserViewModel>();
+            CreateMap<Movement, MovementViewModel>();
             CreateMap<User, UserResponseListViewModel>();
             CreateMap<User, UserResponseAuthenticateViewModel>()
                 .ForMember(x => x.Profile, m => m.MapFrom(map => map.ProfileId));

@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Movements.Data.Mappings
 {
-    public class MovimentsMap : IEntityTypeConfiguration<Moviments>
+    public class MovementsMap : IEntityTypeConfiguration<Domain.Entities.Movement>
     {
-        public void Configure(EntityTypeBuilder<Moviments> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Movement> builder)
         {
             builder.ToTable("MANUAL_MOVIMENTS");
 

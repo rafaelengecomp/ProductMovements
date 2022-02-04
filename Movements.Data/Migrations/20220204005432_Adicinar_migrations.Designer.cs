@@ -10,8 +10,8 @@ using Template.Data.Context;
 namespace Movements.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20220203194031_Ajustando_Preenchimento_automatico")]
-    partial class Ajustando_Preenchimento_automatico
+    [Migration("20220204005432_Adicinar_migrations")]
+    partial class Adicinar_migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,7 +71,7 @@ namespace Movements.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Movements.Domain.Entities.Moviments", b =>
+            modelBuilder.Entity("Movements.Domain.Entities.Movement", b =>
                 {
                     b.Property<int>("EntryNumber")
                         .HasMaxLength(18)
@@ -93,9 +93,9 @@ namespace Movements.Data.Migrations
                         .HasColumnType("nchar(4)")
                         .IsFixedLength(true);
 
-                    b.Property<int>("CodCosif")
+                    b.Property<string>("CodCosif")
                         .HasMaxLength(11)
-                        .HasColumnType("int")
+                        .HasColumnType("nchar(11)")
                         .IsFixedLength(true);
 
                     b.Property<string>("CosifCodCosif")
@@ -407,7 +407,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 2, 3, 16, 40, 31, 19, DateTimeKind.Local).AddTicks(3181),
+                            CreatedDate = new DateTime(2022, 2, 3, 21, 54, 31, 669, DateTimeKind.Local).AddTicks(9669),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -420,7 +420,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 2, 3, 16, 40, 31, 20, DateTimeKind.Local).AddTicks(1392),
+                            CreatedDate = new DateTime(2022, 2, 3, 21, 54, 31, 670, DateTimeKind.Local).AddTicks(7413),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
@@ -441,7 +441,7 @@ namespace Movements.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Movements.Domain.Entities.Moviments", b =>
+            modelBuilder.Entity("Movements.Domain.Entities.Movement", b =>
                 {
                     b.HasOne("Movements.Domain.Entities.Cosif", null)
                         .WithMany("Moviments")

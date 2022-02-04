@@ -10,8 +10,8 @@ using Template.Data.Context;
 namespace Movements.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20220203191733_Ajustando_propriedades")]
-    partial class Ajustando_propriedades
+    [Migration("20220204005845_adi")]
+    partial class adi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,9 +46,32 @@ namespace Movements.Data.Migrations
                     b.HasKey("CodProduct", "CodCosif");
 
                     b.ToTable("PRODUCT_COSIF");
+
+                    b.HasData(
+                        new
+                        {
+                            CodProduct = "0001",
+                            CodCosif = "00000000001",
+                            CodClassification = "000001",
+                            Status = "A"
+                        },
+                        new
+                        {
+                            CodProduct = "0002",
+                            CodCosif = "00000000002",
+                            CodClassification = "000002",
+                            Status = "I"
+                        },
+                        new
+                        {
+                            CodProduct = "0003",
+                            CodCosif = "00000000003",
+                            CodClassification = "000003",
+                            Status = "A"
+                        });
                 });
 
-            modelBuilder.Entity("Movements.Domain.Entities.Moviments", b =>
+            modelBuilder.Entity("Movements.Domain.Entities.Movement", b =>
                 {
                     b.Property<int>("EntryNumber")
                         .HasMaxLength(18)
@@ -70,9 +93,9 @@ namespace Movements.Data.Migrations
                         .HasColumnType("nchar(4)")
                         .IsFixedLength(true);
 
-                    b.Property<int>("CodCosif")
+                    b.Property<string>("CodCosif")
                         .HasMaxLength(11)
-                        .HasColumnType("int")
+                        .HasColumnType("nchar(11)")
                         .IsFixedLength(true);
 
                     b.Property<string>("CosifCodCosif")
@@ -128,6 +151,26 @@ namespace Movements.Data.Migrations
                     b.HasKey("CodProduct");
 
                     b.ToTable("PRODUCT");
+
+                    b.HasData(
+                        new
+                        {
+                            CodProduct = "0001",
+                            Description = "Notebook",
+                            Status = "A"
+                        },
+                        new
+                        {
+                            CodProduct = "0002",
+                            Description = "Book",
+                            Status = "I"
+                        },
+                        new
+                        {
+                            CodProduct = "0003",
+                            Description = "Head Phone",
+                            Status = "A"
+                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Module", b =>
@@ -364,7 +407,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(666),
+                            CreatedDate = new DateTime(2022, 2, 3, 21, 58, 44, 538, DateTimeKind.Local).AddTicks(7900),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -377,7 +420,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(8656),
+                            CreatedDate = new DateTime(2022, 2, 3, 21, 58, 44, 540, DateTimeKind.Local).AddTicks(1307),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
@@ -398,7 +441,7 @@ namespace Movements.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Movements.Domain.Entities.Moviments", b =>
+            modelBuilder.Entity("Movements.Domain.Entities.Movement", b =>
                 {
                     b.HasOne("Movements.Domain.Entities.Cosif", null)
                         .WithMany("Moviments")

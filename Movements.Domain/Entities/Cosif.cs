@@ -14,6 +14,6 @@ namespace Movements.Domain.Entities
 
         public string Status { get; set; }
 
-        public List<Moviments> Moviments { get; set; }
+        public List<Movement> Moviments { get; set; }
     }
 }

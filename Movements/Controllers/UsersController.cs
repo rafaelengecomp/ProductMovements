@@ -164,8 +164,6 @@ namespace Template.Controllers
             }
         }
 
-
-
         [HttpPut]
         public IActionResult Put(UserUpdateAccount user)
         {

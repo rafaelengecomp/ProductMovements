@@ -22,6 +22,7 @@ namespace Template.CrossCutting.IoC
             #region Services
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IMovementService, MovementService>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IModuleService, ModuleService>();
 
@@ -30,6 +31,7 @@ namespace Template.CrossCutting.IoC
             #region Repositories
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMovementRepository, MovementRepository>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IModuleRepository, ModuleRepository>();
 

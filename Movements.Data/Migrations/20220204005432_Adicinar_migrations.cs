@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Movements.Data.Migrations
 {
-    public partial class Ajustando_propriedades : Migration
+    public partial class Adicinar_migrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -141,7 +141,7 @@ namespace Movements.Data.Migrations
                     Year = table.Column<int>(type: "int", fixedLength: true, maxLength: 4, nullable: false),
                     EntryNumber = table.Column<int>(type: "int", fixedLength: true, maxLength: 18, nullable: false),
                     CodProduct = table.Column<string>(type: "nchar(4)", fixedLength: true, maxLength: 4, nullable: false),
-                    CodCosif = table.Column<int>(type: "int", fixedLength: true, maxLength: 11, nullable: false),
+                    CodCosif = table.Column<string>(type: "nchar(11)", fixedLength: true, maxLength: 11, nullable: false),
                     Description = table.Column<string>(type: "nchar(50)", fixedLength: true, maxLength: 50, nullable: false),
                     MovimentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserCode = table.Column<string>(type: "nchar(15)", fixedLength: true, maxLength: 15, nullable: false),
@@ -171,6 +171,16 @@ namespace Movements.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "PRODUCT",
+                columns: new[] { "CodProduct", "Description", "Status" },
+                values: new object[,]
+                {
+                    { "0001", "Notebook", "A" },
+                    { "0002", "Book", "I" },
+                    { "0003", "Head Phone", "A" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Profiles",
                 columns: new[] { "Id", "CreatedUser", "IsActive", "IsDefault", "Name", "UpdatedData", "UpdatedUser" },
                 values: new object[,]
@@ -192,12 +202,22 @@ namespace Movements.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "PRODUCT_COSIF",
+                columns: new[] { "CodCosif", "CodProduct", "CodClassification", "Status" },
+                values: new object[,]
+                {
+                    { "00000000001", "0001", "000001", "A" },
+                    { "00000000002", "0002", "000002", "I" },
+                    { "00000000003", "0003", "000003", "A" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Code", "CreatedDate", "CreatedUser", "Email", "IsActive", "IsAuthorised", "Name", "Password", "ProfileId", "UpdatedData", "UpdatedUser" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(666), 1, "admin@template.com", true, true, "Admin", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 1, null, 0 },
-                    { 2, null, new DateTime(2022, 2, 3, 16, 17, 33, 425, DateTimeKind.Local).AddTicks(8656), 1, "user@template.com", true, true, "User", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 2, null, 0 }
+                    { 1, null, new DateTime(2022, 2, 3, 21, 54, 31, 669, DateTimeKind.Local).AddTicks(9669), 1, "admin@template.com", true, true, "Admin", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 1, null, 0 },
+                    { 2, null, new DateTime(2022, 2, 3, 21, 54, 31, 670, DateTimeKind.Local).AddTicks(7413), 1, "user@template.com", true, true, "User", "8D66A53A381493BEC08DA23CEF5A43767F20A42C", 2, null, 0 }
                 });
 
             migrationBuilder.CreateIndex(

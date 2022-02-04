@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Movements.Domain.Entities
 {
-    public class Moviments
+    public class Movement
     {
         public int Month { get; set; }
 
@@ -16,7 +16,7 @@ namespace Movements.Domain.Entities
 
         public string CodProduct { get; set; }
         
-        public int CodCosif { get; set; }
+        public string CodCosif { get; set; }
 
         public string Description { get; set; }
 
