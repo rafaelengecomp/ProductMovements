@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Movements.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using Template.Application.Interfaces;
+using Template.Application.ViewModels;
 using Template.Application.ViewModels.Users;
 using Template.CrossCutting.Auth.Interfaces;
 using Template.CrossCutting.Auth.ViewModels;
@@ -31,6 +33,24 @@ namespace Template.Application.Services
         public List<MovementViewModel> Get()
         {
             return mapper.Map<List<MovementViewModel>>(repository.Get());
+        }
+
+        public bool Post(CreateProductMovementViewModel productMovement)
+        {
+            try
+            {
+                Movement _productMovement = mapper.Map<Movement>(productMovement);
+                
+                //_productMovement.Code = UtilsService.GenerateCode(8);
+
+                repository.Create(_productMovement);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApiException(ex.Message, HttpStatusCode.BadRequest);
+            }
         }
 
     }

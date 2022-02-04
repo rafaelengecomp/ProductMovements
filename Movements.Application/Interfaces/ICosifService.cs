@@ -4,10 +4,8 @@ using Template.Application.ViewModels.Users;
 
 namespace Template.Application.Interfaces
 {
-	public interface IMovementService
+	public interface ICosifService
 	{
-        List<MovementViewModel> Get();
-
-        bool Post(CreateProductMovementViewModel user);
+        List<CosifViewModel> Get();
     }
 }

@@ -1,2 +1,102 @@
-<h1 id="tableLabel">Dashboard</h1>
+<h1 id="tableLabel">
+    Manual Movements
+     <button type="button" class="btn btn-primary float-right" *ngIf="view=='list'" (click)="view='form'; _userSelected = {}">New</button> 
+</h1>
+  <hr />
+  
+  <div class="col-md-12" *ngIf="view=='form'">
+    
+    <form> 
+      
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="exampleInputEmail1">Month:</label>
+            <input type="text" class="form-control" placeholder="Month" name="month">
+          </div>
+
+          <div class="col-md-6">
+            <label for="exampleInputEmail1">Year:</label>
+            <input type="text" class="form-control" placeholder="Year" name="year">
+           </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="row">
+          <div class="col-md-6">
+            <label>Product:</label>
+            <select name="Product" class="form-control">
+              <option>--Select--</option>
+              <option *ngFor="let products of _products">
+                {{products.description}}
+            </select>            
+          </div>
+
+          <div class="col-md-6">
+            <label>Cosif:</label>
+            <select name="Cosif" class="form-control">
+              <option>--Select--</option>
+              <option *ngFor="let cosifs of _cosifs">
+                {{cosifs.codCosif}} - {{cosifs.codClassification}}
+            </select>          
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="exampleInputEmail1">Value:</label>
+            <input type="text" class="form-control" placeholder="Month" name="month">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="exampleInputEmail1">Description:</label>
+            <input type="text" class="form-control" placeholder="Year" name="year">
+           </div>
+        </div>
+      </div>
+    </form>
+
+    <button type="button" class="btn btn-primary float-right">
+      Add      
+    </button>
+
+  </div>
+
+<div class="col-md-12" *ngIf="view=='list'">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Month</th>
+          <th scope="col">Year</th>
+          <th scope="col">Product Code</th>
+          <th scope="col">Product Description</th>
+          <th scope="col">NR Entry</th>
+          <th scope="col">Description</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movement of _movements">
+          
+          <td>{{movement.month}}</td>
+          <td>{{movement.year}}</td>
+          <td>{{movement.codProduct}}</td>
+          <td>{{movement.description}}</td>
+          <td>{{movement.entryNumber}}</td>
+          <td>{{movement.description}}</td>
+          <td>{{movement.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <th scope="row"><button type="button" class="btn btn-primary" (click)="openDetails(user)">Details</button></th>
+
+  </div>
 

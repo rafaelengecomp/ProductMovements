@@ -31,7 +31,7 @@ namespace Template.Controllers
                 if (_user == null)
                     return Unauthorized();
 
-                return Ok(service.GetByProfile(int.Parse(_user.Profile)));
+                return Ok(service.GetByProfile(1));
             }
             catch (Exception)
             {

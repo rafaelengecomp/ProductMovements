@@ -3,11 +3,13 @@ using Template.Application.ViewModels.Profiles;
 
 namespace Template.Application.ViewModels.Users
 {
-    public class MovementViewModel
-	{
+    public class CreateProductMovementViewModel
+    {
         public int Month { get; set; }
 
         public int Year { get; set; }
+
+        public string CodProduct { get; set; }
 
         public int EntryNumber { get; set; }
 

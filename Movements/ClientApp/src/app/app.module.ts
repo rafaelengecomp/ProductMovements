@@ -12,6 +12,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ModuleService } from './_services/module.service';
 import { Interceptor } from './app.interceptor.module';
 import { UserService } from './_services/user.service';
+import { MovementService } from './_services/movements.service';
+import { ProductService } from './_services/products.service';
+import { CosifService } from './_services/cosif.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AlertService } from './_services/alert.service';
@@ -37,7 +40,8 @@ import { AccountComponent } from './account/account.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: DashboardComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'users', component: UsersComponent },
@@ -48,7 +52,7 @@ import { AccountComponent } from './account/account.component';
     ToastrModule.forRoot(), // ToastrModule added
     NgxLoadingModule.forRoot({}), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [ModuleService, UserService,AlertService, ErrorService, AppComponent, NavMenuComponent ],
+  providers: [ModuleService, UserService, MovementService, ProductService, CosifService, AlertService, ErrorService, AppComponent, NavMenuComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

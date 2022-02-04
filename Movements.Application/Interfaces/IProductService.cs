@@ -4,10 +4,8 @@ using Template.Application.ViewModels.Users;
 
 namespace Template.Application.Interfaces
 {
-	public interface IMovementService
+	public interface IProductService
 	{
-        List<MovementViewModel> Get();
-
-        bool Post(CreateProductMovementViewModel user);
+        List<ProductsViewModel> Get();
     }
 }
