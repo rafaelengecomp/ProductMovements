@@ -21,7 +21,6 @@ namespace Movements.Controllers
         {
             try
             {
-
                 return Ok(service.Get());
             }
             catch (Exception)

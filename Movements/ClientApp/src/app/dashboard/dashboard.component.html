@@ -11,13 +11,13 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
-            <label for="exampleInputEmail1">Month:</label>
-            <input type="text" class="form-control" placeholder="Month" name="month">
+            <label>Month:</label>
+            <input type="text" class="form-control" placeholder="Month" name="month" [(ngModel)]="newProduct.month">
           </div>
 
           <div class="col-md-6">
-            <label for="exampleInputEmail1">Year:</label>
-            <input type="text" class="form-control" placeholder="Year" name="year">
+            <label>Year:</label>
+            <input type="text" class="form-control" placeholder="Year" name="year" [(ngModel)]="newProduct.year">
            </div>
         </div>
       </div>
@@ -27,16 +27,16 @@
         <div class="row">
           <div class="col-md-6">
             <label>Product:</label>
-            <select name="Product" class="form-control">
+            <select name="Product" class="form-control" [(ngModel)]="newProduct.codProduct">
               <option>--Select--</option>
               <option *ngFor="let products of _products">
-                {{products.description}}
+                {{products.codProduct}} - {{products.description}}
             </select>            
           </div>
 
           <div class="col-md-6">
             <label>Cosif:</label>
-            <select name="Cosif" class="form-control">
+            <select name="Cosif" class="form-control" [(ngModel)]="newProduct.codCosif">
               <option>--Select--</option>
               <option *ngFor="let cosifs of _cosifs">
                 {{cosifs.codCosif}} - {{cosifs.codClassification}}
@@ -50,21 +50,21 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
-            <label for="exampleInputEmail1">Value:</label>
-            <input type="text" class="form-control" placeholder="Month" name="month">
+            <label>Value:</label>
+            <input type="text" class="form-control" placeholder="Value" name="value" [(ngModel)]="newProduct.value">
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
-            <label for="exampleInputEmail1">Description:</label>
-            <input type="text" class="form-control" placeholder="Year" name="year">
+            <label>Description:</label>
+            <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="newProduct.description">
            </div>
         </div>
       </div>
     </form>
 
-    <button type="button" class="btn btn-primary float-right">
+    <button type="button" class="btn btn-primary float-right" (click)="register()">
       Add      
     </button>
 

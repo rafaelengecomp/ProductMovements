@@ -1,10 +1,8 @@
-export class Movement {
+export class NewProduct {
     month?: number;
     year?: number;
     productCode?: string;
-    productDescription?: string;
     codCosif?: string;
-    nrEntry?: string;
     description?: string;
     value?: number;
   

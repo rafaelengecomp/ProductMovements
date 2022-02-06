@@ -5,6 +5,7 @@ import { Module } from "../_models/module";
 import { Movement } from "../_models/movements";
 import { Product } from "../_models/products";
 import { Cosif } from "../_models/cosif";
+import { NewProduct } from '../_models/newProductMovements';
 
 @Injectable()
 export class MovementService {
@@ -15,6 +16,10 @@ export class MovementService {
 
  getMovements(): Observable<Movement[]>{
     return this.http.get<Movement[]>("https://localhost:44340" + this._module );
+  }
+
+   registerNewProduct(newProductRegister: NewProduct): Observable<Movement> {
+    return this.http.post<Movement>("https://localhost:44340" + this._module, newProductRegister);
   }
 
 }

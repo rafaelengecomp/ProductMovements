@@ -15,7 +15,7 @@ namespace Movements.Data.Mappings
         {
             builder.ToTable("MANUAL_MOVIMENTS");
 
-            builder.HasKey(key => new { key.EntryNumber, key.Month, key.Year, key.CodProduct, key.CodCosif });
+            builder.HasKey(key => new { key.EntryNumber, key.Month, key.Year });
                    
 
             builder.Property(p => p.Month)

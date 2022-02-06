@@ -40,8 +40,13 @@ namespace Template.Application.Services
             try
             {
                 Movement _productMovement = mapper.Map<Movement>(productMovement);
-                
-                //_productMovement.Code = UtilsService.GenerateCode(8);
+
+               var A = mapper.Map<List<MovementViewModel>>(repository.Get());
+
+                //_productMovement.EntryNumber = UtilsService.GenerateCode(8);
+                _productMovement.CodProduct = _productMovement.CodProduct.Substring(0, 4);
+                _productMovement.UserCode = "TESTE";
+                _productMovement.MovimentDate = DateTime.Now;
 
                 repository.Create(_productMovement);
 

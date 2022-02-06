@@ -11,6 +11,8 @@ namespace Template.Application.ViewModels.Users
 
         public string CodProduct { get; set; }
 
+        public string CodCosif { get; set; }
+
         public int EntryNumber { get; set; }
 
         public string Description { get; set; }

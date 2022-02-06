@@ -21,6 +21,8 @@ namespace Template.Application.AutoMapper
             CreateMap<UserRequestCreateAccountViewModel, User>()
                 .ForMember(x => x.Password, y => y.MapFrom(m => UtilsService.EncryptPassword(m.Password)));
 
+            CreateMap<CreateProductMovementViewModel, Movement>();
+
             #endregion
 
             #region "Domain to ViewModel"
@@ -29,8 +31,10 @@ namespace Template.Application.AutoMapper
                 .ForMember(x => x.Profile, m => m.MapFrom(map => map.ProfileId));
             CreateMap<User, UserViewModel>();
             CreateMap<Movement, MovementViewModel>();
+            
             CreateMap<Product, ProductsViewModel>();
             CreateMap<Cosif, CosifViewModel>();
+            
             CreateMap<User, UserResponseListViewModel>();
             CreateMap<User, UserResponseAuthenticateViewModel>()
                 .ForMember(x => x.Profile, m => m.MapFrom(map => map.ProfileId));
