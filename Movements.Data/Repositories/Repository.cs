@@ -57,6 +57,11 @@ namespace Template.Data.Repositories
             }
         }
 
+        public IEnumerable<TEntity> GetAll()
+        {
+            return DbSet.AsNoTracking();
+        }
+
         public TEntity Find(Expression<Func<TEntity, bool>> where)
         {
             try

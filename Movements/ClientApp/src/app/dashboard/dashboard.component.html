@@ -6,18 +6,18 @@
   
   <div class="col-md-12" *ngIf="view=='form'">
     
-    <form> 
+    <form name="formRegisterMovement"> 
       
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
             <label>Month:</label>
-            <input type="text" class="form-control" placeholder="Month" name="month" [(ngModel)]="newProduct.month">
+            <input type="text" class="form-control" placeholder="Month" name="month" [(ngModel)]="newProduct.month" maxlength="2" required="required">
           </div>
 
           <div class="col-md-6">
             <label>Year:</label>
-            <input type="text" class="form-control" placeholder="Year" name="year" [(ngModel)]="newProduct.year">
+            <input type="text" class="form-control" placeholder="Year" name="year" [(ngModel)]="newProduct.year" maxlength="4" required="required">
            </div>
         </div>
       </div>
@@ -51,22 +51,21 @@
         <div class="row">
           <div class="col-md-6">
             <label>Value:</label>
-            <input type="text" class="form-control" placeholder="Value" name="value" [(ngModel)]="newProduct.value">
+            <input type="text" class="form-control" placeholder="Value" name="value" [(ngModel)]="newProduct.value" maxlength="18">
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
             <label>Description:</label>
-            <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="newProduct.description">
+            <textarea type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="newProduct.description" maxlength="50"></textarea>
            </div>
         </div>
       </div>
     </form>
 
-    <button type="button" class="btn btn-primary float-right" (click)="register()">
-      Add      
-    </button>
+    <button type="button" class="btn btn-primary" (click)="register()"> Add</button>
+    <button type="button" class="btn btn-primary float-right" (click)="clearForm()">Clear</button>
 
   </div>
 
@@ -96,7 +95,5 @@
         </tr>
       </tbody>
     </table>
-    <th scope="row"><button type="button" class="btn btn-primary" (click)="openDetails(user)">Details</button></th>
-
   </div>
 

@@ -2,6 +2,7 @@
 using Movements.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Template.Application.Interfaces;
 using Template.Application.ViewModels;
@@ -41,10 +42,11 @@ namespace Template.Application.Services
             {
                 Movement _productMovement = mapper.Map<Movement>(productMovement);
 
-               var A = mapper.Map<List<MovementViewModel>>(repository.Get());
+               var productMovementList = mapper.Map<List<MovementViewModel>>(repository.Get());
 
-                //_productMovement.EntryNumber = UtilsService.GenerateCode(8);
+                _productMovement.EntryNumber = Convert.ToInt32(UtilsService.GenerateReleaseNumber(productMovementList, productMovement.Year, productMovement.Month));
                 _productMovement.CodProduct = _productMovement.CodProduct.Substring(0, 4);
+                _productMovement.CodCosif = _productMovement.CodCosif.PadLeft(11, '0').Substring(0, 11);
                 _productMovement.UserCode = "TESTE";
                 _productMovement.MovimentDate = DateTime.Now;
 

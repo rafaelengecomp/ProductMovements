@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Movements.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Template.Data.Context;
 using Template.Domain.Entities;
@@ -13,9 +14,9 @@ namespace Template.Data.Repositories
 		public MovementRepository(MySQLContext context)
 			: base(context) { }
 
-		public IQueryable<Movement> Get()
+		public IEnumerable<Movement> Get()
 		{
-			return Query(x => x.CodProduct == "0001");
+			return GetAll();
 		}
     }
 }

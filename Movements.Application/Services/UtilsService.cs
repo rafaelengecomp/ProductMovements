@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Template.Application.ViewModels.Users;
 
 namespace Template.Application.Services
 {
@@ -38,7 +40,32 @@ namespace Template.Application.Services
 			return string.Concat(host, "/api/users/activate/", email, "/", code);
 		}
 
-        public static bool IsAdmin(string profile)
+		internal static string GenerateReleaseNumber(List<MovementViewModel> productMovementList, int year, int month)
+		{
+			var productMovementListFiltered = productMovementList.Where(s => s.Year == year && s.Month == month).ToList();
+			int lastEntryNumber;
+			string newEntryNumber;
+
+
+			if (productMovementListFiltered.Any())
+			{
+				lastEntryNumber = productMovementListFiltered.LastOrDefault().EntryNumber;
+				newEntryNumber = (lastEntryNumber + 1).ToString();
+
+				return newEntryNumber;
+			}
+            else
+            {
+				newEntryNumber = "0";
+
+				return newEntryNumber;
+			}
+		}
+
+		
+
+
+		public static bool IsAdmin(string profile)
         {
 			return profile == "1";
         }
