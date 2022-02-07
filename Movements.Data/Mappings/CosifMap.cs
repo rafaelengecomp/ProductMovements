@@ -21,10 +21,6 @@ namespace Movements.Data.Mappings
                .HasMaxLength(11)
                .IsFixedLength();
 
-            builder.Property(p => p.CodProduct)
-              .HasMaxLength(4)
-              .IsFixedLength();
-
             builder.Property(p => p.CodClassification)
              .HasMaxLength(6)
              .IsFixedLength();
@@ -33,7 +29,7 @@ namespace Movements.Data.Mappings
             .HasMaxLength(1)
             .IsFixedLength();
 
-            builder.HasOne(x => x.Product).WithMany(x => x.Cosifs).HasForeignKey(x => x.CodProduct);
+           
         }
     }
 }

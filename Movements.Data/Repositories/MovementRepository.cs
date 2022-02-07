@@ -11,7 +11,7 @@ namespace Template.Data.Repositories
 {
     public class MovementRepository : Repository<Movement>, IMovementRepository
 	{
-		public MovementRepository(MySQLContext context)
+		public MovementRepository(SqlServerContext context)
 			: base(context) { }
 
 		public IEnumerable<Movement> Get()

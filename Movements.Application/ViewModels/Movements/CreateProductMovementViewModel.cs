@@ -1,5 +1,4 @@
 ﻿using System;
-using Template.Application.ViewModels.Profiles;
 
 namespace Template.Application.ViewModels.Users
 {

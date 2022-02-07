@@ -10,12 +10,12 @@ namespace Template.Data.Repositories
 {
     public class ProductRepository : Repository<Product>, IProductRepository
 	{
-		public ProductRepository(MySQLContext context)
+		public ProductRepository(SqlServerContext context)
 			: base(context) { }
 
 		public IQueryable<Product> Get()
 		{
-			return Query(x => x.CodProduct == "0001");
+			return Query(x => x.Status == "A");
 		}
     }
 }

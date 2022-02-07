@@ -1,7 +1,9 @@
-<h1 id="tableLabel">
-    Manual Movements
-     <button type="button" class="btn btn-primary float-right" *ngIf="view=='list'" (click)="view='form'; _userSelected = {}">New</button> 
-</h1>
+<h1 id="tableLabel">Manual Movements</h1>
+
+<div class="break-line">
+  
+</div>
+
   <hr />
   
   <div class="col-md-12" *ngIf="view=='form'">
@@ -115,5 +117,6 @@
         </tr>
       </tbody>
     </table>
+    <button type="button" class="btn btn-primary float-right" *ngIf="view=='list'" (click)="view='form'; ">New</button> 
   </div>
 

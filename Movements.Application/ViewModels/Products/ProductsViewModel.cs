@@ -1,7 +1,6 @@
 ﻿using Movements.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using Template.Application.ViewModels.Profiles;
 
 namespace Template.Application.ViewModels
 {

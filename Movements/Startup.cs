@@ -11,10 +11,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
 using Template.Application.AutoMapper;
-using Template.CrossCutting.Auth.Providers;
 using Template.CrossCutting.ExceptionHandler.Providers;
 using Template.CrossCutting.IoC;
-using Template.CrossCutting.Notification.ViewModels;
 using Template.CrossCutting.Swagger;
 using Template.Data.Context;
 
@@ -33,7 +31,7 @@ namespace Template
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<MySQLContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
+            services.AddDbContext<SqlServerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
 
             services.AddCors(options =>
             {
@@ -44,10 +42,9 @@ namespace Template
             });
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            //services.AddSingleton(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
             NativeInjector.RegisterServices(services);
             services.AddSwaggerConfiguration();
-            services.AddCustomJWTConfiguration();
             services.AddAutoMapper(typeof(AutoMapperSetup));
 
             services.AddControllersWithViews();

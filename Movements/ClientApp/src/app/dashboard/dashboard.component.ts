@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NavMenuComponent } from '../nav-menu/nav-menu.component';
-import { ModuleService } from '../_services/module.service';
 import { Module } from '../_models/module';
 import { MovementService } from '../_services/movements.service';
 import { ProductService } from '../_services/products.service';

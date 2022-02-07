@@ -10,12 +10,12 @@ namespace Template.Data.Repositories
 {
     public class CosifRepository : Repository<Cosif>, ICosifRepository
 	{
-		public CosifRepository(MySQLContext context)
+		public CosifRepository(SqlServerContext context)
 			: base(context) { }
 
 		public IQueryable<Cosif> Get()
 		{
-			return Query(x => x.CodProduct == "0001");
+			return Query(x => x.Status == "A");
 		}
     }
 }
