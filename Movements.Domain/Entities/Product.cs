@@ -12,6 +12,6 @@ namespace Movements.Domain.Entities
         public string Description { get; set; }
         public string Status { get; set; }
 
-        public List<Cosif> Cosif { get; set; }
+        public List<Cosif> Cosifs { get; private set; }
     }
 }

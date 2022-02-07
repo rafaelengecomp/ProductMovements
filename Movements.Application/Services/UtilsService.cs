@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Template.Application.ViewModels.Users;
+using Template.CrossCutting.ExceptionHandler.Extensions;
 
 namespace Template.Application.Services
 {
@@ -63,7 +64,6 @@ namespace Template.Application.Services
 		}
 
 		
-
 
 		public static bool IsAdmin(string profile)
         {

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
 namespace Movements.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    partial class MySQLContextModelSnapshot : ModelSnapshot
+    [Migration("20220207130115_changing-key")]
+    partial class changingkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,19 +38,12 @@ namespace Movements.Data.Migrations
                         .HasColumnType("nchar(4)")
                         .IsFixedLength(true);
 
-                    b.Property<string>("CosifCodCosif")
-                        .HasColumnType("nchar(11)");
-
                     b.Property<string>("Status")
                         .HasMaxLength(1)
                         .HasColumnType("nchar(1)")
                         .IsFixedLength(true);
 
                     b.HasKey("CodCosif");
-
-                    b.HasIndex("CodProduct");
-
-                    b.HasIndex("CosifCodCosif");
 
                     b.ToTable("PRODUCT_COSIF");
 
@@ -103,6 +98,9 @@ namespace Movements.Data.Migrations
                         .HasColumnType("nchar(4)")
                         .IsFixedLength(true);
 
+                    b.Property<string>("CosifCodCosif")
+                        .HasColumnType("nchar(11)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -125,6 +123,8 @@ namespace Movements.Data.Migrations
 
                     b.HasKey("EntryNumber", "Month", "Year");
 
+                    b.HasIndex("CosifCodCosif");
+
                     b.ToTable("MANUAL_MOVIMENTS");
 
                     b.HasData(
@@ -136,7 +136,7 @@ namespace Movements.Data.Migrations
                             CodCosif = "00000000001",
                             CodProduct = "0001",
                             Description = "Notebook",
-                            MovimentDate = new DateTime(2022, 2, 7, 10, 42, 18, 846, DateTimeKind.Local).AddTicks(8459),
+                            MovimentDate = new DateTime(2022, 2, 7, 10, 1, 14, 327, DateTimeKind.Local).AddTicks(2505),
                             UserCode = "TESTE",
                             Value = 10000
                         });
@@ -418,7 +418,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 2, 7, 10, 42, 18, 845, DateTimeKind.Local).AddTicks(8222),
+                            CreatedDate = new DateTime(2022, 2, 7, 10, 1, 14, 325, DateTimeKind.Local).AddTicks(5828),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -431,7 +431,7 @@ namespace Movements.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 2, 7, 10, 42, 18, 846, DateTimeKind.Local).AddTicks(6029),
+                            CreatedDate = new DateTime(2022, 2, 7, 10, 1, 14, 326, DateTimeKind.Local).AddTicks(8529),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
@@ -445,15 +445,18 @@ namespace Movements.Data.Migrations
 
             modelBuilder.Entity("Movements.Domain.Entities.Cosif", b =>
                 {
-                    b.HasOne("Movements.Domain.Entities.Product", "Product")
-                        .WithMany("Cosifs")
-                        .HasForeignKey("CodProduct");
+                    b.HasOne("Movements.Domain.Entities.Product", null)
+                        .WithMany("Cosif")
+                        .HasForeignKey("CodCosif")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
 
+            modelBuilder.Entity("Movements.Domain.Entities.Movement", b =>
+                {
                     b.HasOne("Movements.Domain.Entities.Cosif", null)
-                        .WithMany("Cosifs")
+                        .WithMany("Moviments")
                         .HasForeignKey("CosifCodCosif");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.ModuleProfile", b =>
@@ -488,12 +491,12 @@ namespace Movements.Data.Migrations
 
             modelBuilder.Entity("Movements.Domain.Entities.Cosif", b =>
                 {
-                    b.Navigation("Cosifs");
+                    b.Navigation("Moviments");
                 });
 
             modelBuilder.Entity("Movements.Domain.Entities.Product", b =>
                 {
-                    b.Navigation("Cosifs");
+                    b.Navigation("Cosif");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Module", b =>

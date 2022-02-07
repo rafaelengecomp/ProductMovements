@@ -18,11 +18,8 @@ namespace Template.Data.Context
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<ModuleProfile> ModuleProfiles { get; set; }
-
         public DbSet<Product> Product { get; set; }
-
         public DbSet<Cosif> Cosif { get; set; }
-
         public DbSet<Movement> Moviments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

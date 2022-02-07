@@ -44,6 +44,8 @@ namespace Template.Application.Services
 
                var productMovementList = mapper.Map<List<MovementViewModel>>(repository.Get());
 
+                ValidationService.IsValidMonthOrYear(productMovement.Month, productMovement.Year);
+
                 _productMovement.EntryNumber = Convert.ToInt32(UtilsService.GenerateReleaseNumber(productMovementList, productMovement.Year, productMovement.Month));
                 _productMovement.CodProduct = _productMovement.CodProduct.Substring(0, 4);
                 _productMovement.CodCosif = _productMovement.CodCosif.PadLeft(11, '0').Substring(0, 11);

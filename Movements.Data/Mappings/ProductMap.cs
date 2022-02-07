@@ -28,8 +28,7 @@ namespace Movements.Data.Mappings
             builder.Property(p => p.Status)
              .HasMaxLength(1)
              .IsFixedLength();
-
-            builder.HasMany(x => x.Cosif).WithOne();
+            
         }
     }
 }

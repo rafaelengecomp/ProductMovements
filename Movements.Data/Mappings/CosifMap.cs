@@ -15,7 +15,7 @@ namespace Movements.Data.Mappings
         {
             builder.ToTable("PRODUCT_COSIF");
 
-            builder.HasKey(key => new { key.CodProduct, key.CodCosif });
+            builder.HasKey(key => new { key.CodCosif });
 
             builder.Property(p => p.CodCosif)
                .HasMaxLength(11)
@@ -33,7 +33,7 @@ namespace Movements.Data.Mappings
             .HasMaxLength(1)
             .IsFixedLength();
 
-            builder.HasMany(x => x.Moviments).WithOne();
+            builder.HasOne(x => x.Product).WithMany(x => x.Cosifs).HasForeignKey(x => x.CodProduct);
         }
     }
 }

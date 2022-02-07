@@ -50,5 +50,18 @@ namespace Template.Application.Services
             if (id == 0)
                 throw new ApiException("Put method must have ID field", HttpStatusCode.BadRequest);
         }
+
+        internal static void IsValidMonthOrYear(int month, int year)
+        {
+            if (year < 1 || year > 9999)
+            {
+                throw new ApiException("Invalid Year.", HttpStatusCode.BadRequest);
+            }
+
+            if (month < 1 || month > 12)
+            {
+                throw new ApiException("Invalid Month.", HttpStatusCode.BadRequest);
+            }
+        }
     }
 }

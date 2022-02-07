@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Template.Application.Interfaces;
+using Template.Application.Services;
 using Template.Application.ViewModels.Users;
 
 namespace Movements.Controllers
@@ -36,6 +37,7 @@ namespace Movements.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
+        
 
                 return Ok(service.Post(productMoviment));
             }

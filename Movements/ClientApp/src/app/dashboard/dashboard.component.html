@@ -6,19 +6,26 @@
   
   <div class="col-md-12" *ngIf="view=='form'">
     
-    <form name="formRegisterMovement"> 
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" name="formRegisterMovement"> 
       
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
             <label>Month:</label>
-            <input type="text" class="form-control" placeholder="Month" name="month" [(ngModel)]="newProduct.month" maxlength="2" required="required">
+            <input type="text" class="form-control" placeholder="Month" name="month" [(ngModel)]="newProduct.month" maxlength="2" required="required" #month="ngModel">
+            <div *ngIf="!month.valid && month.touched">
+              Month is required
+            </div>
           </div>
+
 
           <div class="col-md-6">
             <label>Year:</label>
-            <input type="text" class="form-control" placeholder="Year" name="year" [(ngModel)]="newProduct.year" maxlength="4" required="required">
-           </div>
+            <input type="text" class="form-control" placeholder="Year" name="year" [(ngModel)]="newProduct.year" maxlength="4" required="required" #year="ngModel">
+            <div *ngIf="!year.valid && year.touched" >
+              Year is required
+            </div> 
+          </div>
         </div>
       </div>
 
@@ -27,20 +34,26 @@
         <div class="row">
           <div class="col-md-6">
             <label>Product:</label>
-            <select name="Product" class="form-control" [(ngModel)]="newProduct.codProduct">
+            <select name="Product" class="form-control" [(ngModel)]="newProduct.codProduct" required="required" #product="ngModel">
               <option>--Select--</option>
               <option *ngFor="let products of _products">
                 {{products.codProduct}} - {{products.description}}
-            </select>            
+            </select>    
+            <div *ngIf="!product.valid && product.touched">
+              Product is required
+            </div>        
           </div>
 
           <div class="col-md-6">
             <label>Cosif:</label>
-            <select name="Cosif" class="form-control" [(ngModel)]="newProduct.codCosif">
+            <select name="Cosif" class="form-control" [(ngModel)]="newProduct.codCosif" required="required" #cosif="ngModel">
               <option>--Select--</option>
               <option *ngFor="let cosifs of _cosifs">
                 {{cosifs.codCosif}} - {{cosifs.codClassification}}
-            </select>          
+            </select>   
+            <div *ngIf="!cosif.valid && cosif.touched">
+              Cosif is required
+            </div>         
           </div>
 
         </div>
@@ -51,20 +64,27 @@
         <div class="row">
           <div class="col-md-6">
             <label>Value:</label>
-            <input type="text" class="form-control" placeholder="Value" name="value" [(ngModel)]="newProduct.value" maxlength="18">
+            <input type="text" class="form-control" placeholder="Value" name="value" [(ngModel)]="newProduct.value" maxlength="18" required="required" #value="ngModel">
+            <div *ngIf="!value.valid && value.touched">
+              Value is required
+            </div>  
           </div>
+
         </div>
 
         <div class="row">
           <div class="col-md-6">
             <label>Description:</label>
-            <textarea type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="newProduct.description" maxlength="50"></textarea>
-           </div>
+            <textarea type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="newProduct.description" maxlength="50" required="required" #description="ngModel"></textarea>
+            <div class="color" *ngIf="!description.valid && description.touched">
+              Description is required
+            </div>  
+          </div>
         </div>
       </div>
     </form>
 
-    <button type="button" class="btn btn-primary" (click)="register()"> Add</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="register()"> Add</button>
     <button type="button" class="btn btn-primary float-right" (click)="clearForm()">Clear</button>
 
   </div>

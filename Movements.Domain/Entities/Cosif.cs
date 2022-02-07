@@ -11,9 +11,8 @@ namespace Movements.Domain.Entities
         public string CodProduct { get; set; }
         public string CodCosif { get; set; }
         public string CodClassification { get; set; }
-
         public string Status { get; set; }
-
-        public List<Movement> Moviments { get; set; }
+        public Product Product { get; private set; }
+        public List<Cosif> Cosifs { get; set; }
     }
 }

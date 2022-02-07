@@ -84,12 +84,11 @@ export class DashboardComponent {
       this.router.navigateByUrl("/dashboard");
   }
 
-
 clearForm(){
   this.newProduct = {};
 }
 
-   openDetails(user){
+openDetails(user){
     this._userSelected = user;
     this.view = 'form';
   }
