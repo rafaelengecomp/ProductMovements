@@ -34,6 +34,10 @@ export class DashboardComponent {
     this.getCosifList();
   }
 
+  ngOnInit(){
+    this.getMovements();
+  }
+
   getMovements(){
     this.app.loading = true;
     this.movementService.getMovements().subscribe(data => {
@@ -80,6 +84,7 @@ export class DashboardComponent {
       this.getMovements();
       this.view = 'list';
       this.router.navigateByUrl("/dashboard");
+      window.location.reload();
   }
 
 clearForm(){
